@@ -27,14 +27,29 @@ func main() {
 		}
 	}
 	fmt.Println(matrix)
+	// make a graph
+
 }
 
 type Graph struct {
-	nodes Node
+	nodes map[int]*Node
 }
 type Node struct {
 	payload int
 	adjNode map[int]struct{}
+}
+
+func (g *Graph) addNode(key int, payload int) {
+	if _, ok := g.nodes[key]; ok {
+		fmt.Println("duplicated key." + string(key) + " Will replace paylaod " + string(payload))
+	} else {
+		g.nodes[key] = &Node{payload: payload, adjNode: make(map[int]struct{})}
+	}
+	g.nodes[key].payload = payload
+}
+
+func (g *Graph) addEdge() {
+
 }
 
 type Queue []int

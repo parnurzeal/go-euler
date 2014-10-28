@@ -16,6 +16,9 @@ func checkPandig(allNum []int) bool {
 			tmpNum = tmpNum / 10
 		}
 	}
+	if checker[0] {
+		return false
+	}
 	for i := 1; i <= 9; i++ {
 		if !checker[i] {
 			return false
@@ -25,11 +28,12 @@ func checkPandig(allNum []int) bool {
 }
 
 func main() {
+	fmt.Println(checkPandig([]int{39, 186, 7254}))
 	all := []int{}
 	for i := 1; i < 10; i++ {
 		for j := 1000; j < 10000; j++ {
 			sum := j * i
-			if sum < 10000 {
+			if sum > 10000 {
 				continue
 			} else if checkPandig([]int{i, j, sum}) {
 				isIn := false
@@ -48,10 +52,11 @@ func main() {
 	for i := 11; i < 100; i++ {
 		for j := 100; j < 1000; j++ {
 			sum := j * i
-			if sum < 10000 {
+			if sum > 10000 {
 				continue
 			} else if checkPandig([]int{i, j, sum}) {
 				isIn := false
+				fmt.Println(i, j, sum)
 				for _, n := range all {
 					if n == sum {
 						isIn = true
